@@ -4,6 +4,7 @@ import falcon
 import json
 
 class ThingsResource(object):
+
     def on_get(self, req, resp):
         alunos = [
             {
@@ -24,9 +25,9 @@ class ThingsResource(object):
         ]
 
         resp.status = falcon.HTTP_200
-        resp.body = json.dumps(students)
+        resp.body = json.dumps(alunos)
 
-    def on_get(self, req, resp, id):
+    def on_get_student(self, req, resp, id):
 
         try:
             identificador = int(id)
@@ -174,4 +175,4 @@ things = ThingsResource()
 
 # things will handle all requests to the '/things' URL path
 app.add_route('/things', things)
-app.add_route('/things/{id}', things)
+app.add_route('/things/{id}', things, suffix='student')
